@@ -1,1 +1,10 @@
 #!/usr/bin/env ruby
+
+require_relative "../lib/play_master"
+
+puts "usage: bin/go <grid_size> <color_count>"
+puts "example: bin/go 8 4"
+grid_size = ARGV[0]
+color_count = ARGV[1]
+
+PlayMaster.new(Grid.new(grid_size, color_count)).play
