@@ -1,10 +1,19 @@
 #!/usr/bin/env ruby
+  require 'yamler'
 
 require_relative "../lib/play_master"
+require_relative "../lib/grid"
 
-puts "usage: bin/go <grid_size> <color_count>"
-puts "example: bin/go 8 4"
-grid_size = ARGV[0]
-color_count = ARGV[1]
+puts "modify config.yml for grid size and color count"
+
+config = YAML.load_file("config/config.yml")
+
+grid_size = config['grid_size'].to_i
+color_count = config['color_count'].to_i
+
+if color_count * 2 >= grid_size then 
+puts "Invalid board" 
+exit
+end
 
 PlayMaster.new(Grid.new(grid_size, color_count)).play
